@@ -27,7 +27,7 @@ LOCAL_CFLAGS += -fno-stack-protector \
 LOCAL_CFLAGS += -I$(LOCAL_PATH)/../libc/
 
 ifeq ($(TARGET_ARCH),arm)
-    LOCAL_CFLAGS += -DANDROID_ARM_LINKER
+    LOCAL_CFLAGS += -DANDROID_ARM_LINKER -Wno-error=strict-aliasing
 endif
 
 ifeq ($(TARGET_ARCH),x86)
