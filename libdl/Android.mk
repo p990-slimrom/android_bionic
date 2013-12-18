@@ -27,6 +27,8 @@ LOCAL_SRC_FILES:= libdl.c
 LOCAL_MODULE:= libdl
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 
+LOCAL_NO_LTO_SUPPORT := true
+
 # NOTE: libdl needs __aeabi_unwind_cpp_pr0 from libgcc.a but libgcc.a needs a
 # few symbols from libc. Using --no-undefined here results in having to link
 # against libc creating a circular dependency which is removed and we end up
@@ -56,6 +58,8 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_CFLAGS += -fno-lto
 
 LOCAL_SHARED_LIBRARIES := libdl
+
+LOCAL_NO_LTO_SUPPORT := true
 
 include $(BUILD_EXECUTABLE)
 
