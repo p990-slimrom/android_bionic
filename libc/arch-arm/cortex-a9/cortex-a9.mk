@@ -5,6 +5,7 @@ libc_bionic_src_files_arm += \
     arch-arm/cortex-a9/bionic/strcpy.S \
     bionic/memmove.c \
     arch-arm/cortex-a15/bionic/strlen.S \
+    arch-arm/cortex-a15/bionic/memchr.S \
 
 
 ifeq ($(strip $(ARCH_ARM_HAVE_NEON)),true)
