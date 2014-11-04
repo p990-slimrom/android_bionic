@@ -1,5 +1,3 @@
-
-
 $(call libc-add-cpu-variant-src,STRCAT,arch-arm/cortex-a9/bionic/strcat.S)
 $(call libc-add-cpu-variant-src,STRCMP,arch-arm/cortex-a9/bionic/strcmp.S)
 
@@ -18,3 +16,5 @@ $(call libc-add-cpu-variant-src,STRLEN,arch-arm/cortex-a9/bionic-linaro/strlen.S
 endif
 
 include bionic/libc/arch-arm/generic/generic.mk
+
+#    bionic/memmove.c \

@@ -18,13 +18,13 @@ include $(CLEAR_VARS)
 LOCAL_LDFLAGS := -Wl,--exclude-libs=libgcc.a
 
 # for x86, exclude libgcc_eh.a for the same reasons as above
-ifeq ($(TARGET_ARCH),x86)
-LOCAL_LDFLAGS += -Wl,--exclude-libs=libgcc_eh.a
-endif
+LOCAL_LDFLAGS_x86 := -Wl,--exclude-libs=libgcc_eh.a
+LOCAL_LDFLAGS_x86_64 := $(LOCAL_LDFLAGS_x86)
 
 LOCAL_SRC_FILES:= libdl.c
+LOCAL_CFLAGS := -Wall -Wextra -Wunused -Werror
 
-LOCAL_MODULE:= libdl
+LOCAL_MODULE := libdl
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 
 LOCAL_NO_LTO_SUPPORT := true
@@ -40,27 +40,3 @@ LOCAL_SYSTEM_SHARED_LIBRARIES :=
 LOCAL_CFLAGS += -fno-lto
 
 include $(BUILD_SHARED_LIBRARY)
-
-BUILD_DLTEST:=0
-ifeq ($(BUILD_DLTEST),1)
-
-#
-# dltest
-#
-
-include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES:= dltest.c
-
-LOCAL_MODULE:= dltest
-LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
-
-LOCAL_CFLAGS += -fno-lto
-
-LOCAL_SHARED_LIBRARIES := libdl
-
-LOCAL_NO_LTO_SUPPORT := true
-
-include $(BUILD_EXECUTABLE)
-
-endif
