@@ -1,5 +1,6 @@
 $(call libc-add-cpu-variant-src,STRCAT,arch-arm/cortex-a9/bionic/strcat.S)
 $(call libc-add-cpu-variant-src,STRCMP,arch-arm/cortex-a9/bionic/strcmp.S)
+$(call libc-add-cpu-variant-src,STPCPY,arch-arm/cortex-a9/bionic/stpcpy.S)
 
 ifeq ($(strip $(ARCH_ARM_HAVE_NEON)),true)
 $(call libc-add-cpu-variant-src,MEMCPY,arch-arm/cortex-a9/bionic/memcpy.S)
