@@ -1,5 +1,4 @@
 libc_bionic_src_files_arm += \
-    arch-arm/cortex-a15/bionic/memchr.S \
     arch-arm/cortex-a15/bionic/memcpy.S \
     arch-arm/cortex-a15/bionic/memset.S \
     arch-arm/cortex-a15/bionic/stpcpy.S \
@@ -10,3 +9,4 @@ libc_bionic_src_files_arm += \
     arch-arm/cortex-a15/bionic/__strcpy_chk.S \
     arch-arm/cortex-a15/bionic/strlen.S \
     bionic/memmove.c \
+    bionic/memchr.c
