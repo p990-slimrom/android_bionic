@@ -65,6 +65,10 @@ libc_common_src_files := \
     stdio/snprintf.c\
     stdio/sprintf.c \
 
+ifeq ($(TARGET_NEEDS_BIONIC_MD5),true)
+libc_common_src_files += bionic/md5.c
+endif
+
 # Fortify implementations of libc functions.
 libc_common_src_files += \
     bionic/__FD_chk.cpp \
@@ -535,6 +539,10 @@ ifneq ($(BOARD_MALLOC_ALIGNMENT),)
   libc_common_cflags += -DMALLOC_ALIGNMENT=$(BOARD_MALLOC_ALIGNMENT)
 endif
 
+ifeq ($(BOARD_USES_LEGACY_MMAP),true)
+  libc_common_cflags += -DLEGACY_MMAP
+endif
+
 # Define ANDROID_SMP appropriately.
 ifeq ($(TARGET_CPU_SMP),true)
     libc_common_cflags += -DANDROID_SMP=1
@@ -816,11 +824,6 @@ LOCAL_SRC_FILES := $(libc_bionic_src_files)
 LOCAL_CFLAGS := $(libc_common_cflags) \
     -Wframe-larger-than=2048 \
 
-ifeq ($(TARGET_ARCH),x86_64)
-  # Clang assembler has problem with ssse3-strcmp-slm.S, http://b/17302991
-  LOCAL_CLANG_ASFLAGS += -no-integrated-as
-endif
-
 LOCAL_CONLYFLAGS := $(libc_common_conlyflags)
 LOCAL_CPPFLAGS := $(libc_common_cppflags)
 LOCAL_C_INCLUDES := $(libc_common_c_includes)
@@ -1076,6 +1079,9 @@ LOCAL_SRC_FILES_arm += \
     arch-common/bionic/crtbegin_so.c \
     arch-arm/bionic/atexit_legacy.c \
     arch-common/bionic/crtend_so.S
+
+# Allow devices to provide additional symbols
+LOCAL_WHOLE_STATIC_LIBRARIES += $(BOARD_PROVIDES_ADDITIONAL_BIONIC_STATIC_LIBS)
 
 include $(BUILD_SHARED_LIBRARY)
 

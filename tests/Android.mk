@@ -54,6 +54,7 @@ test_cppflags = \
 libBionicStandardTests_src_files := \
     arpa_inet_test.cpp \
     buffer_tests.cpp \
+    complex_test.cpp \
     ctype_test.cpp \
     dirent_test.cpp \
     eventfd_test.cpp \
@@ -85,6 +86,7 @@ libBionicStandardTests_src_files := \
     mntent_test.cpp \
     netdb_test.cpp \
     pthread_test.cpp \
+    pty_test.cpp \
     regex_test.cpp \
     sched_test.cpp \
     search_test.cpp \
@@ -116,6 +118,7 @@ libBionicStandardTests_src_files := \
     uchar_test.cpp \
     uniqueptr_test.cpp \
     unistd_test.cpp \
+    utmp_test.cpp \
     wchar_test.cpp \
 
 libBionicStandardTests_cflags := \
@@ -291,7 +294,7 @@ bionic-unit-tests-glibc_whole_static_libraries := \
     libBionicStandardTests \
 
 bionic-unit-tests-glibc_ldlibs := \
-    -lrt -ldl \
+    -lrt -ldl -lutil \
 
 bionic-unit-tests-glibc_c_includes := \
     bionic/libc \
